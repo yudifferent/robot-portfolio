@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>吳寬禹｜小禹老師・機器人競賽與教學作品集</title>
+  <meta name="description" content="吳寬禹（小禹老師）個人網站，展示機器人競賽成果、帶隊經驗、教學理念與技術能力。" />
+  <style>
+    :root {
+      --bg: #071120;
+      --bg-soft: #0c1a2f;
+      --card: rgba(14, 30, 56, 0.78);
+      --card-border: rgba(141, 211, 255, 0.18);
+      --text: #eaf4ff;
+      --muted: #9bb4d1;
+      --primary: #4cc9ff;
+      --primary-2: #6a8cff;
+      --accent: #9ce8ff;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.3);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(76, 201, 255, 0.18), transparent 22%),
+        radial-gradient(circle at 85% 18%, rgba(106, 140, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 75% 75%, rgba(76, 201, 255, 0.12), transparent 18%),
+        linear-gradient(180deg, #06101e 0%, #081526 40%, #0a1730 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,0.65), rgba(255,255,255,0.08));
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    .orb {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -2;
+      opacity: 0.28;
+      pointer-events: none;
+      animation: floatOrb 16s ease-in-out infinite;
+    }
+
+    .orb.orb-1 {
+      top: -80px;
+      left: -90px;
+      background: #2fd4ff;
+    }
+
+    .orb.orb-2 {
+      right: -100px;
+      top: 180px;
+      background: #486fff;
+      animation-delay: -4s;
+    }
+
+    .orb.orb-3 {
+      left: 45%;
+      bottom: -140px;
+      background: #31d2f2;
+      animation-delay: -8s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, 32px, 0) scale(1.08); }
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 12, 24, 0.62);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(76, 201, 255, 0.9), rgba(106, 140, 255, 0.95));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 24px rgba(62, 164, 255, 0.32);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.96rem;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      padding: 70px 0 50px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(156, 232, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #a8e9ff 48%, #77a4ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      text-decoration: none;
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 12px 30px rgba(61, 168, 255, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #eaf4ff;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-panel {
+      position: relative;
+      background: linear-gradient(180deg, rgba(10, 25, 47, 0.9), rgba(8, 17, 32, 0.88));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -30% -42% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76, 201, 255, 0.2), transparent 65%);
+      z-index: -1;
+    }
+
+    .panel-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--accent);
+      border: 1px solid rgba(156, 232, 255, 0.16);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 112px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .section {
+      padding: 28px 0 90px;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+      line-height: 1.8;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      border: 1px solid rgba(156, 232, 255, 0.16);
+      background: rgba(255,255,255,0.03);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
+    }
+
+    .about-card,
+    .skills-card,
+    .timeline,
+    .projects-grid .project-card,
+    .philosophy-card,
+    .contact-card,
+    .highlight-card,
+    .award-card,
+    .experience-card {
+      padding: 26px;
+    }
+
+    .about-card p,
+    .skills-card p,
+    .philosophy-card p,
+    .contact-card p,
+    .highlight-card p,
+    .experience-card p {
+      color: var(--muted);
+      line-height: 1.95;
+      margin: 0;
+    }
+
+    .inline-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: #d9efff;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .skills-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .skill-item {
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #dceeff;
+      font-weight: 600;
+    }
+
+    .progress {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 18px rgba(76, 201, 255, 0.35);
+      transition: width 1.2s ease;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .highlight-card h3,
+    .project-card h3,
+    .award-card h3,
+    .experience-card h3,
+    .contact-card h3,
+    .about-card h3,
+    .skills-card h3,
+    .philosophy-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+    }
+
+    .highlight-card strong {
+      display: block;
+      font-size: 2.1rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .timeline {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 30px;
+      top: 28px;
+      bottom: 28px;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(76, 201, 255, 0.8), rgba(106, 140, 255, 0.14));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 72px;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 20px;
+      top: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 0 6px rgba(76, 201, 255, 0.12);
+    }
+
+    .timeline-year {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.04);
+      color: #d7ebff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 600;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: linear-gradient(135deg, rgba(76, 201, 255, 0.18), rgba(106, 140, 255, 0.18));
+      border-color: rgba(76, 201, 255, 0.24);
+      color: #fff;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .award-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease;
+    }
+
+    .award-card:hover,
+    .project-card:hover,
+    .experience-card:hover,
+    .highlight-card:hover,
+    .contact-card:hover,
+    .about-card:hover,
+    .skills-card:hover,
+    .philosophy-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(120, 212, 255, 0.28);
+    }
+
+    .award-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -50% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76, 201, 255, 0.14), transparent 68%);
+      pointer-events: none;
+    }
+
+    .award-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    .award-year {
+      font-size: 0.9rem;
+      color: var(--accent);
+      padding: 7px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .award-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .award-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mini-tag {
+      font-size: 0.8rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #d7ebff;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: attr(data-index);
+      position: absolute;
+      right: 20px;
+      top: 14px;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      letter-spacing: -0.05em;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .project-footer {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #dceeff;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(76, 201, 255, 0.2), rgba(106, 140, 255, 0.22));
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .contact-item a {
+      color: #fff;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 32px 0 48px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 40;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(8, 17, 32, 0.86);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .about-grid,
+      .two-col,
+      .projects-grid,
+      .philosophy-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .highlights-grid,
+      .awards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 16px;
+        right: 16px;
+        padding: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(6, 14, 28, 0.96);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .hero-panel,
+      .about-card,
+      .skills-card,
+      .timeline,
+      .project-card,
+      .philosophy-card,
+      .contact-card,
+      .highlight-card,
+      .award-card,
+      .experience-card {
+        padding: 22px;
+      }
+
+      .highlights-grid,
+      .awards-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding-bottom: 74px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <span class="brand-mark">⚙</span>
+        <span>小禹老師｜Wu Kuan Yu</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">關於我</a>
+        <a href="#awards">競賽成果</a>
+        <a href="#experience">帶隊經驗</a>
+        <a href="#projects">作品專區</a>
+        <a href="#philosophy">教學理念</a>
+        <a href="#contact">聯絡方式</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="切換選單">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">🚀 機器人競賽指導 × 科技教育實作</div>
+          <h1>
+            <span class="gradient">吳寬禹</span><br />
+            小禹老師的個人網站
+          </h1>
+          <p>
+            我是逢甲大學大四學生，高中開始接觸機器人程式領域，從樂高實作一路走到競賽與帶隊教學。
+            希望透過自身的參賽經驗、實作能力與教學熱忱，帶領學生在機器人學習與競賽中穩定成長、發揮潛力。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#awards">查看競賽成果</a>
+            <a class="btn btn-secondary" href="#contact">聯絡我</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="panel-chip">💡 個人亮點總覽</div>
+          <h2 style="margin:0 0 10px; font-size: 1.6rem;">從參賽者到帶隊老師</h2>
+          <p style="margin:0; color: var(--muted); line-height:1.85;">
+            具備全國競賽得獎經驗、社團指導經驗，以及實際帶領學生參加比賽的成果，能將技術、教學與陪伴整合為完整訓練方式。
+          </p>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" data-counter="20">0</div>
+              <div class="stat-label">學生時期競賽與得獎紀錄</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-counter="4">0</div>
+              <div class="stat-label">2026 帶隊成果紀錄</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-counter="3">0</div>
+              <div class="stat-label">代表性專題作品</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-counter="3">0</div>
+              <div class="stat-label">主要技術能力領域</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">01｜關於我</div>
+            <h2 class="section-title">結合理論、實作與競賽的學習歷程</h2>
+            <p class="section-subtitle">
+              從小接觸樂高，培養了良好的空間概念與動手實作能力；高中開始深入機器人程式與競賽領域，逐步累積專題製作、比賽訓練與教學帶隊經驗。
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card glass-card reveal">
+            <h3>個人簡介</h3>
+            <p>
+              我是 <strong>吳寬禹</strong>，也常被稱作 <strong>小禹老師</strong>，目前就讀於逢甲大學大四。
+              我的學習路徑從樂高實作出發，逐步延伸到機器人程式控制、感測器應用、競賽邏輯設計與專題開發。
+              在學生時期，我持續參與各類型機器人與創意競賽，並在過程中累積面對問題、拆解任務與優化策略的能力。
+              現在，我希望將這些經驗轉化為教學力量，陪伴學生把興趣變成能力，把練習轉化成成果。
+            </p>
+            <div class="inline-list">
+              <span class="tag">逢甲大學大四學生</span>
+              <span class="tag">機器人競賽實作</span>
+              <span class="tag">學生帶隊指導</span>
+              <span class="tag">科技教育教學</span>
+            </div>
+          </article>
+
+          <aside class="skills-card glass-card reveal">
+            <h3>技術能力</h3>
+            <p>熟悉競賽導向的機器人控制與教學應用，能依學生程度進行難度調整與系統化練習安排。</p>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-top">
+                  <span>EV3</span>
+                  <span>90%</span>
+                </div>
+                <div class="progress"><span data-width="90%"></span></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-top">
+                  <span>Arduino</span>
+                  <span>82%</span>
+                </div>
+                <div class="progress"><span data-width="82%"></span></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-top">
+                  <span>Python</span>
+                  <span>80%</span>
+                </div>
+                <div class="progress"><span data-width="80%"></span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="highlights-grid">
+          <article class="highlight-card glass-card reveal">
+            <h3>競賽歷程</h3>
+            <strong>2019–2023</strong>
+            <p>持續參與火星避障、FLL、WRO、TIRC、工業機器人等多元競賽，累積穩定實戰經驗。</p>
+          </article>
+          <article class="highlight-card glass-card reveal">
+            <h3>帶隊經驗</h3>
+            <strong>2026</strong>
+            <p>實際指導國小與混齡學生參賽，取得全國第一、全國第二與佳作等成績。</p>
+          </article>
+          <article class="highlight-card glass-card reveal">
+            <h3>社團教學</h3>
+            <strong>1 學期</strong>
+            <p>曾擔任彰興國中國中社團指導老師，累積第一線教學與互動經驗。</p>
+          </article>
+          <article class="highlight-card glass-card reveal">
+            <h3>作品實作</h3>
+            <strong>3 件</strong>
+            <p>具備專題製作經驗，能將創意構想結合機器人、辨識與系統設計實際完成。</p>
+          </article>
+        </div>
+
+        <article class="timeline glass-card reveal" style="margin-top:24px;">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">起點</div>
+            <h3>從樂高建立空間與實作基礎</h3>
+            <p>從小接觸樂高，培養立體結構理解、模組組裝與動手解決問題的能力，奠定後續機器人學習基礎。</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">高中時期</div>
+            <h3>正式投入機器人程式與競賽領域</h3>
+            <p>開始接觸機器人程式設計、競賽邏輯與任務拆解，逐步累積全國賽事經驗與比賽調整能力。</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">大學階段</div>
+            <h3>由參賽者轉向教學與帶隊</h3>
+            <p>將自身歷程轉化為教學內容，嘗試陪伴學生從基礎訓練、問題修正，到實際上場比賽取得成績。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="awards">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">02｜競賽成果</div>
+            <h2 class="section-title">學生時期競賽與得獎紀錄</h2>
+            <p class="section-subtitle">
+              涵蓋機器人創意賽、相撲競賽、無人車競速、發明展與資訊競賽等多元領域，累積跨平台實作與應變能力。
+            </p>
+          </div>
+        </div>
+
+        <div class="toolbar reveal">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="robot">機器人競賽</button>
+          <button class="filter-btn" data-filter="innovation">創意 / 發明</button>
+          <button class="filter-btn" data-filter="info">資訊 / 科學</button>
+        </div>
+
+        <div class="awards-grid" id="awardsGrid">
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>全國火星避障賽</h3>
+              <span class="award-year">2019</span>
+            </div>
+            <p>第三名、最佳人氣獎</p>
+            <div class="award-meta">
+              <span class="mini-tag">機器人</span>
+              <span class="mini-tag">全國賽</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>FLL 台灣選拔賽</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>最佳新星團隊獎</p>
+            <div class="award-meta">
+              <span class="mini-tag">團隊競賽</span>
+              <span class="mini-tag">機器人</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="innovation">
+            <div class="award-top">
+              <h3>Matrix 雲端競賽 AGV 創意賽</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>佳作</p>
+            <div class="award-meta">
+              <span class="mini-tag">創意設計</span>
+              <span class="mini-tag">AGV</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>Robofest 機器人水瓶相撲競賽</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>參賽</p>
+            <div class="award-meta">
+              <span class="mini-tag">相撲機器人</span>
+              <span class="mini-tag">實戰經驗</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>WRO 機器人高中競賽 縣賽</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>第一名</p>
+            <div class="award-meta">
+              <span class="mini-tag">WRO</span>
+              <span class="mini-tag">縣賽冠軍</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>WRO 機器人高中競賽 中南區賽</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>佳作</p>
+            <div class="award-meta">
+              <span class="mini-tag">區域賽</span>
+              <span class="mini-tag">WRO</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="info">
+            <div class="award-top">
+              <h3>數理資訊能力競賽 資訊組 校內</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>第一名</p>
+            <div class="award-meta">
+              <span class="mini-tag">資訊能力</span>
+              <span class="mini-tag">校內競賽</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="info">
+            <div class="award-top">
+              <h3>數理資訊能力競賽 資訊組 中區</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>參賽</p>
+            <div class="award-meta">
+              <span class="mini-tag">資訊競賽</span>
+              <span class="mini-tag">中區</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="info">
+            <div class="award-top">
+              <h3>遠哲科學趣味競賽 校內 / 中區</h3>
+              <span class="award-year">2020</span>
+            </div>
+            <p>校內第一名、中區第四名</p>
+            <div class="award-meta">
+              <span class="mini-tag">科學應用</span>
+              <span class="mini-tag">邏輯實作</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>國際奧林匹亞機器人全國總決賽 創意組</h3>
+              <span class="award-year">2021</span>
+            </div>
+            <p>參賽</p>
+            <div class="award-meta">
+              <span class="mini-tag">創意組</span>
+              <span class="mini-tag">全國總決賽</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="innovation">
+            <div class="award-top">
+              <h3>IEYI 國際青少年發明展台灣選拔賽</h3>
+              <span class="award-year">2022</span>
+            </div>
+            <p>便利組佳作、安全健康組銅牌</p>
+            <div class="award-meta">
+              <span class="mini-tag">發明展</span>
+              <span class="mini-tag">創新應用</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>全國工業機器人 無人車競速 / 堆高搬運</h3>
+              <span class="award-year">2022</span>
+            </div>
+            <p>第二名、佳作</p>
+            <div class="award-meta">
+              <span class="mini-tag">工業機器人</span>
+              <span class="mini-tag">無人車</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>WRO 機器人高中競賽</h3>
+              <span class="award-year">2022</span>
+            </div>
+            <p>縣賽第一名、中南區第三名、全國賽第六名</p>
+            <div class="award-meta">
+              <span class="mini-tag">WRO</span>
+              <span class="mini-tag">進階競賽</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>虎頭山智駕車競賽 全國</h3>
+              <span class="award-year">2022</span>
+            </div>
+            <p>第二名</p>
+            <div class="award-meta">
+              <span class="mini-tag">智駕車</span>
+              <span class="mini-tag">全國賽</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="innovation">
+            <div class="award-top">
+              <h3>致青春創未來專題競賽 全國</h3>
+              <span class="award-year">2022</span>
+            </div>
+            <p>第二名、最佳人氣獎</p>
+            <div class="award-meta">
+              <span class="mini-tag">專題競賽</span>
+              <span class="mini-tag">人氣獎</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>工業機器人無人車競速賽</h3>
+              <span class="award-year">2023</span>
+            </div>
+            <p>全國第二</p>
+            <div class="award-meta">
+              <span class="mini-tag">工業機器人</span>
+              <span class="mini-tag">全國第二</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>工業機器人 ROS 機器人競賽</h3>
+              <span class="award-year">2023</span>
+            </div>
+            <p>全國第二</p>
+            <div class="award-meta">
+              <span class="mini-tag">ROS</span>
+              <span class="mini-tag">控制實作</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>TIRC 智慧型機器人無軌避障</h3>
+              <span class="award-year">2023</span>
+            </div>
+            <p>全國第一</p>
+            <div class="award-meta">
+              <span class="mini-tag">TIRC</span>
+              <span class="mini-tag">冠軍</span>
+            </div>
+          </article>
+
+          <article class="award-card glass-card reveal" data-category="robot">
+            <div class="award-top">
+              <h3>TIRC 智慧機器人相撲機器人</h3>
+              <span class="award-year">2023</span>
+            </div>
+            <p>全國第一</p>
+            <div class="award-meta">
+              <span class="mini-tag">TIRC</span>
+              <span class="mini-tag">相撲機器人</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">03｜教學與帶隊</div>
+            <h2 class="section-title">從社團教學到實際帶隊參賽</h2>
+            <p class="section-subtitle">
+              除了自己參與競賽，也開始投入學生培訓與指導，希望把經驗系統化，幫助學生更有效率地進步。
+            </p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="experience-list">
+            <article class="experience-card glass-card reveal">
+              <h3>彰興國中社團指導老師</h3>
+              <p>
+                於 2023 年帶過一學期的彰興國中社團課程，實際規劃教學內容、陪伴學生練習，並在互動中調整授課方式，累積教學經驗。
+              </p>
+            </article>
+
+            <article class="experience-card glass-card reveal">
+              <h3>帶隊得獎成果</h3>
+              <p>
+                2026 年帶領學生參加 TIRC 與工業機器人競賽，分別取得國小組全國第一、混齡組全國第二、國小組全國佳作等成績，顯示訓練成果具備穩定性與實際成效。
+              </p>
+            </article>
+          </div>
+
+          <article class="timeline glass-card reveal">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026</div>
+              <h3>TIRC 智慧型機器人競賽｜無軌避障</h3>
+              <p>國小組 全國第一</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026</div>
+              <h3>TIRC 樂高相撲機器人</h3>
+              <p>混齡組 全國第二</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026</div>
+              <h3>工業機器人競賽｜自主移動機器人</h3>
+              <p>國小組 全國佳作</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026</div>
+              <h3>工業機器人競賽｜智慧循跡</h3>
+              <p>國小組 參賽</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">04｜作品專區</div>
+            <h2 class="section-title">曾經完成的代表性專題</h2>
+            <p class="section-subtitle">
+              透過不同類型的作品，累積從發想、設計到實作落地的能力，並將科技應用與生活問題結合。
+            </p>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card glass-card reveal" data-index="01">
+            <h3>智慧型免招手公車系統</h3>
+            <p>
+              以智慧化方式改善搭車流程，透過系統辨識與訊號傳遞，提升乘車便利性，展現生活情境結合科技應用的設計能力。
+            </p>
+            <div class="project-footer">
+              <span class="mini-tag">智慧交通</span>
+              <span class="mini-tag">系統設計</span>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal" data-index="02">
+            <h3>智慧型道路號誌轉換系統</h3>
+            <p>
+              針對交通情境進行號誌轉換設計，強調邏輯控制與情境判斷，反映對感測、條件判斷與控制流程的理解。
+            </p>
+            <div class="project-footer">
+              <span class="mini-tag">邏輯控制</span>
+              <span class="mini-tag">交通應用</span>
+            </div>
+          </article>
+
+          <article class="project-card glass-card reveal" data-index="03">
+            <h3>古廟保衛隊｜KNR 熱像儀辨識</h3>
+            <p>
+              將辨識技術與場域保護概念結合，透過熱像儀辨識進行環境監測與預警，展現創意整合與專題發展能力。
+            </p>
+            <div class="project-footer">
+              <span class="mini-tag">辨識應用</span>
+              <span class="mini-tag">創意專題</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="philosophy">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">05｜教學理念</div>
+            <h2 class="section-title">把競賽能力，轉化成學生真正學得會的能力</h2>
+            <p class="section-subtitle">
+              我重視的不只是結果，更是學生在練習過程中是否真正理解、是否能獨立思考，以及是否建立面對問題的信心。
+            </p>
+          </div>
+        </div>
+
+        <div class="philosophy-grid">
+          <article class="philosophy-card glass-card reveal">
+            <h3>我的教學理念</h3>
+            <p>
+              我相信機器人教育不只是比賽與得獎，更重要的是培養學生的邏輯思考能力、問題解決能力與團隊合作精神。
+              在教學過程中，我會引導學生從基礎理解原理，逐步建立完整觀念，並透過實作與反覆測試，讓學生真正學會如何解決問題，而不是只完成任務。
+              我希望學生不只是會做機器人，而是具備面對未來科技挑戰的能力。
+            </p>
+          </article>
+
+          <article class="philosophy-card glass-card reveal">
+            <h3>為什麼我適合帶隊</h3>
+            <p>
+              我擁有完整的競賽歷程，從參賽者一路到帶隊指導，了解學生在不同階段會遇到的問題與瓶頸。
+              同時，我具備多項全國級競賽得獎經驗，熟悉各類機器人競賽規則與策略，能有效帶領學生在有限時間內提升實力。
+              在教學上，我重視學生的理解與成長，能依照不同程度調整教學方式，並陪伴學生從零開始到完成比賽。
+              我不只是指導學生比賽，更希望成為引導他們成長的教練。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="badge">06｜聯絡方式</div>
+            <h2 class="section-title">期待有機會參與更多教學與帶隊合作</h2>
+            <p class="section-subtitle">
+              若您希望進一步了解我的教學能力、競賽經驗，或洽談社團、競賽培訓與相關合作，歡迎與我聯絡。
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-wrap">
+          <article class="contact-card glass-card reveal">
+            <h3>合作方向</h3>
+            <p>
+              可配合機器人社團教學、競賽訓練、專題實作指導與學生基礎能力培養。
+              網站目前可先作為個人介紹與能力展示頁面，之後會再擴充比賽照片、作品細節與更多成果頁面。
+            </p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-icon">👨‍🏫</div>
+                <div>身份：逢甲大學大四學生／機器人競賽指導</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">🧠</div>
+                <div>專長：EV3、Arduino、Python、競賽訓練、教學帶隊</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">🏆</div>
+                <div>方向：社團指導、帶隊培訓、競賽教學、科技教育合作</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="contact-card glass-card reveal">
+            <h3>聯絡資訊</h3>
+            
+            <div class="contact-list">
+
+  <a class="contact-item" href="mailto:aa0958833520@gmail.com">
+    📧 Gmail 聯絡
+  </a>
+
+  <a class="contact-item" href="https://instagram.com/yu.different_robotics" target="_blank">
+    📱 Instagram
+  </a>
+
+  <a class="contact-item" href="https://line.me/ti/p/@595zbnkv">
+    💬 LINE 聯絡
+  </a>
+
+</div>
+            <div class="hero-actions" style="margin-top:20px;">
+              <a class="btn btn-primary" href="mailto:yourmail@example.com">立即聯絡</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    © 2026 吳寬禹 Wu Kuan Yu｜小禹老師．Personal Portfolio Website
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="回到頂部">↑</button>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    menuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach(item => revealObserver.observe(item));
+
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.counter || 0);
+        const duration = 1400;
+        const startTime = performance.now();
+
+        function update(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const value = Math.floor(progress * target);
+          el.textContent = value;
+          if (progress < 1) requestAnimationFrame(update);
+          else el.textContent = target;
+        }
+
+        requestAnimationFrame(update);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    const skillBars = document.querySelectorAll('.progress span');
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.dataset.width;
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    skillBars.forEach(bar => skillObserver.observe(bar));
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const awardCards = document.querySelectorAll('.award-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+
+        awardCards.forEach(card => {
+          const category = card.dataset.category;
+          const show = filter === 'all' || category === filter;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) scrollTopBtn.classList.add('show');
+      else scrollTopBtn.classList.remove('show');
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
